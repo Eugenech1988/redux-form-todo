@@ -1,0 +1,36 @@
+{
+  "name": "contractors-v3",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "custom-react-scripts": "0.2.1",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^1.0.1",
+    "gulp-imagemin": "^3.4.0",
+    "imagemin-pngquant": "^5.0.1",
+    "moment": "^2.20.1",
+    "multipipe": "^1.0.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.0",
+    "react-datepicker": "^1.1.0",
+    "react-dom": "^16.1.0",
+    "react-dropzone": "^4.2.3",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.2.1",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.1",
+    "redux-thunk": "^2.2.0",
+    "rename": "^1.0.4"
+  },
+  "scripts": {
+    "start": "NODE_PATH=./src react-scripts start",
+    "build": "NODE_PATH=./src react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.2"
+  }
+}
