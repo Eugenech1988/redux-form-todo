@@ -38,13 +38,13 @@ class SideBar extends Component {
           <div className='sidebar-sort'>
             <div className='sidebar-input-wrap'>
               <label className='sidebar-title-label'>
-                Title
+                Title:
               </label>
               <input type='text' className='sidebar-title-input' name=''/>
             </div>
             <div className='sidebar-input-wrap'>
               <label className='sidebar-date-label'>
-                Date
+                Date:
               </label>
               <DatePicker className='sidebar-date-picker'
                           carret

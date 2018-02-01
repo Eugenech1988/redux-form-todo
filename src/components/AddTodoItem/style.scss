@@ -1,0 +1,44 @@
+.add-item-heading {
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.add-item-input {
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 30px;
+  border: 1px solid black;
+}
+
+.add-item-wrap {
+  background-color: rgba(238,238,238, 1);
+  max-width: 400px;
+  width: 100%;
+  padding: 15px;
+}
+
+.add-item-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.add-todo-input-wrap {
+  margin-bottom: 10px;
+}
+
+.add-todo-item-btn {
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 30px;
+}
+
+//.hidden-div {
+//  height: 0;
+//  width: 0;
+//  margin: 0;
+//  padding: 0;
+//  display: none;
+//  visibility: hidden;
+//}

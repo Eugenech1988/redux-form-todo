@@ -17,12 +17,15 @@ const dispatchMapToProps = dispatch => ({
 
 @connect(mapStateToProps, dispatchMapToProps)
 class AppContainer extends Component {
+  submit = values => {
+    console.log(values);
+  };
   render() {
     return (
       <div className='content-wrapp'>
-        <AddTodoItem/>
-        <hr className="content-separator"/>
-        <div className="bottom-wrap">
+        <AddTodoItem onSubmit={this.submit}/>
+        <hr className='content-separator'/>
+        <div className='bottom-wrap'>
           <SideBar/>
           <ToDoList/>
         </div>
