@@ -4,13 +4,11 @@ import {
   DELETE_TODO_ITEM
 } from "constants/todoListConst";
 
-const initialListState = [
-  todoItems = []
-];
-
-export const todoList = (state = initialListState, action = {}) => ({
+export const todoList = (state = [], action) => {
   switch (action.type) {
     case GET_TODO_LIST:
-      return {...state, action}
-}
-});
+      return {...state, listItems: action.listItems};
+    default:
+      return {...state};
+  }
+};

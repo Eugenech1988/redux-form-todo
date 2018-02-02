@@ -9,6 +9,7 @@
     "gulp-cache": "^1.0.1",
     "gulp-imagemin": "^3.4.0",
     "imagemin-pngquant": "^5.0.1",
+    "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "multipipe": "^1.0.2",
     "prop-types": "^15.6.0",
