@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import ToDoItem from './item';
 import Pagination from 'components/Pagination';
@@ -16,6 +17,16 @@ const dispatchMapToProps = dispatch => ({
   getTodoList: (data) => dispatch(getTodoList(data))
 });
 
+const Fade = ({ children, ...props }) => (
+  <CSSTransition
+    {...props}
+    timeout={1000}
+    classNames="fade"
+  >
+    {children}
+  </CSSTransition>
+);
+
 @connect(mapStateToProps, dispatchMapToProps)
 class ToDoList extends Component {
   componentWillMount() {
@@ -28,21 +39,23 @@ class ToDoList extends Component {
     return (
       <div className='todo-list-wrap'>
         {todoList &&
-        <div className='todo-list'>
+        <TransitionGroup className='todo-list'>
           {
             todoList.map((array, index) => {
               return (
-                <ToDoItem
-                  itemHeading={array.heading}
-                  itemContent={array.content}
-                  itemDate={array.date}
-                  key={index}
-                  dataIndex={index}
-                />
+                <Fade key={index}>
+                    <ToDoItem
+                      className='todo-item-wrap'
+                      itemHeading={array.heading}
+                      itemContent={array.content}
+                      itemDate={array.date}
+                      dataIndex={index}
+                    />
+                </Fade>
               );
             })
           }
-        </div>
+        </TransitionGroup>
         }
         {todoList && todoList.length > 16 &&
         <Pagination/>
