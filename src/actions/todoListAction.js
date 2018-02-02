@@ -9,9 +9,9 @@ export const getTodoList = listItems => ({
 	listItems
 });
 
-export const setTodoItem = payload => ({
+export const setTodoItem = addedItem => ({
 	type: SET_TODO_ITEM,
-	payload
+	addedItem
 });
 
 export const deleteTodoItem = payload => ({

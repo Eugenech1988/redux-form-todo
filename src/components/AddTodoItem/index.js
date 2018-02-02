@@ -1,39 +1,34 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import {connect} from 'react-redux';
 
 import './style.scss';
+import AddTodoItemForm from "../AddTodoItemForm";
+import {setTodoItem} from "actions/todoListAction";
 
+
+const mapStateToProps = state => ({
+
+});
+
+const dispatchMapToProps = dispatch => ({
+  setTodoItem: (data) => dispatch(setTodoItem(data))
+});
+
+@connect(mapStateToProps, dispatchMapToProps)
 class AddTodoItem extends Component {
-  state = {
-    startDate: moment().format('0D.0M.YYYY h:mm A')
+  submit = values => {
+    const {setTodoItem} = this.props;
+    setTodoItem(values);
   };
   render() {
-    const {handleSubmit} = this.props;
-    const {startDate} = this.state;
-    console.log(startDate);
     return (
       <div className='add-item'>
         <h2 className='add-item-heading'>
           Add new ToDo Item
         </h2>
         <div className='add-item-wrap'>
-          <form onSubmit={handleSubmit}>
-            <div className='add-todo-input-wrap'>
-              <label className='add-item-label' htmlFor='title'>Title:</label>
-              <Field className='add-item-input' name='title' component='input' type='text'/>
-            </div>
-            <div className='add-todo-input-wrap'>
-              <label className='add-item-label' htmlFor='description'>Description:</label>
-              <Field  className='add-item-input' name='description' component='input' type='text'/>
-            </div>
-            <div className='hidden-div'>
-              <label htmlFor="submit-date"/>
-              <Field name='submit-date' component='input' type='text' value={startDate}/>
-            </div>
-            <button className='add-todo-item-btn' type='submit'>Submit</button>
-          </form>
+          <AddTodoItemForm  onSubmit={this.submit}/>
         </div>
       </div>
     );
@@ -41,11 +36,7 @@ class AddTodoItem extends Component {
 }
 
 AddTodoItem.propTypes = {
-  handleSubmit: PropTypes.func
+  setTodoItem: PropTypes.func
 };
-
-AddTodoItem = reduxForm({
-  form: 'addItem' // a unique identifier for this form
-})(AddTodoItem);
 
 export default AddTodoItem;
