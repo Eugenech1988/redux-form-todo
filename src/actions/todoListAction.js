@@ -1,7 +1,8 @@
 import {
 	GET_TODO_LIST,
 	SET_TODO_ITEM,
-	DELETE_TODO_ITEM
+	DELETE_TODO_ITEM,
+	SET_TODO_ID
 } from "constants/todoListConst";
 
 export const getTodoList = listItems => ({
@@ -17,4 +18,9 @@ export const setTodoItem = addedItem => ({
 export const deleteTodoItem = payload => ({
 	type: DELETE_TODO_ITEM,
 	payload
+});
+
+export const setTodoId = id => ({
+	type: SET_TODO_ID,
+	id
 });
