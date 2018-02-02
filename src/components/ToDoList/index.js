@@ -49,7 +49,7 @@ class ToDoList extends Component {
                       itemHeading={array.heading}
                       itemContent={array.content}
                       itemDate={array.date}
-                      dataIndex={index}
+                      dataIndex={array.id}
                     />
                 </Fade>
               );
