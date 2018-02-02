@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
 
 import './style.scss';
 
 class AddTodoItem extends Component {
   state = {
-    startDate: moment()
+    startDate: moment().format('0D.0M.YYYY h:mm A')
   };
   render() {
     const {handleSubmit} = this.props;
@@ -31,7 +30,7 @@ class AddTodoItem extends Component {
             </div>
             <div className='hidden-div'>
               <label htmlFor="submit-date"/>
-              <Field name='submit-date' component='input' type='text' value={startDate._d}/>
+              <Field name='submit-date' component='input' type='text' value={startDate}/>
             </div>
             <button className='add-todo-item-btn' type='submit'>Submit</button>
           </form>
