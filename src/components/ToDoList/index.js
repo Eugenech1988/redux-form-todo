@@ -7,7 +7,6 @@ import ToDoItem from './item';
 import './style.scss';
 import {todoInputArray, hasClass} from "helpers/helpers";
 import {getTodoList} from "actions/todoListAction";
-import cx from "classnames";
 
 const mapStateToProps = state => ({
   todoList: state.todoList
@@ -35,8 +34,8 @@ class ToDoList extends Component {
   };
   
   componentDidMount() {
-    const paginationListActiveItem = document.getElementsByClassName('pagination-page-numbers-item')[0];
-    paginationListActiveItem.classList.add('active');
+    // const paginationListActiveItem = document.getElementsByClassName('pagination-page-numbers-item')[0];
+    // paginationListActiveItem.classList.add('active');
   }
   
   handlePaginationClick(e) {
@@ -73,7 +72,7 @@ class ToDoList extends Component {
     if (currentPage > 1) {
       this.setState({
         currentPage: prevPage
-      })
+      });
       const activeItem = document.getElementById(prevPage);
       const paginationListItems = document.getElementsByClassName('pagination-page-numbers-item');
       for (let i = 0; i < paginationListItems.length; i ++)
