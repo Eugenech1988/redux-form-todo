@@ -2,7 +2,8 @@ import {
   GET_TODO_LIST,
   SET_TODO_ITEM,
   DELETE_TODO_ITEM,
-  SET_TODO_ID
+  SORT_TODO_LIST_BY_DATE,
+  SORT_TODO_LIST_BY_TITLE
 } from "constants/todoListConst";
 
 export const todoList = (state = [], action) => {
@@ -23,8 +24,8 @@ export const todoList = (state = [], action) => {
           // [...state.listItems.slice(0, action.payload), ...state.listItems.slice(action.payload + 1)]
         
       };
-    case SET_TODO_ID:
-      return {...state, listItems: action.id};
+    case SORT_TODO_LIST_BY_DATE:
+      return {...state, titleValue: action.payload};
     default:
       return {...state};
   }

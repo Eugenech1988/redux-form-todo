@@ -4,12 +4,17 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 
+import {sortByTitleValue} from 'actions/todoListAction';
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.scss';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  listItems: state.todoList.listItems
+});
 
-const dispatchMapToProps = dispatch => ({});
+const dispatchMapToProps = dispatch => ({
+  sortByTitleValue: (data) => dispatch(sortByTitleValue())
+});
 
 @connect(mapStateToProps, dispatchMapToProps)
 class SideBar extends Component {
@@ -24,9 +29,13 @@ class SideBar extends Component {
     this.setState({
       startDate: date
     });
-    console.log('changed');
   }
   
+  handleTitleChange(e) {
+    const {sortByTitleValue} = this.props;
+    e.preventDefault();
+    sortByTitleValue(e.target);
+  }
   render() {
     const {startDate} = this.state;
     return (
@@ -37,10 +46,10 @@ class SideBar extends Component {
           </div>
           <div className='sidebar-sort'>
             <div className='sidebar-input-wrap'>
-              <label className='sidebar-title-label'>
+              <label className='sidebar-title-label' htmlFor='title-input'>
                 Title:
               </label>
-              <input type='text' className='sidebar-title-input' name=''/>
+              <input type='text' className='sidebar-title-input' name='title-input' id='title-input' onChange={::this.handleTitleChange}/>
             </div>
             <div className='sidebar-input-wrap'>
               <label className='sidebar-date-label'>
@@ -58,6 +67,8 @@ class SideBar extends Component {
   };
 }
 
-SideBar.propTypes = {};
+SideBar.propTypes = {
+  sortByTitleValue: PropTypes.func
+};
 
 export default SideBar;

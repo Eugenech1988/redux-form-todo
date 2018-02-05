@@ -2,7 +2,8 @@ import {
 	GET_TODO_LIST,
 	SET_TODO_ITEM,
 	DELETE_TODO_ITEM,
-	SET_TODO_ID
+	SORT_TODO_LIST_BY_TITLE,
+  SORT_TODO_LIST_BY_DATE
 } from "constants/todoListConst";
 
 export const getTodoList = listItems => ({
@@ -20,7 +21,12 @@ export const deleteTodoItem = payload => ({
 	payload
 });
 
-export const setTodoId = id => ({
-	type: SET_TODO_ID,
-	id
+export const sortByTitleValue = payload => ({
+  type: SORT_TODO_LIST_BY_TITLE,
+  payload
+});
+
+export const sortByDateValue = payload => ({
+  type: SORT_TODO_LIST_BY_DATE,
+  payload
 });

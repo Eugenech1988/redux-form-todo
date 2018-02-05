@@ -24,9 +24,7 @@ class AddTodoItem extends Component {
       idArray.push(listItems[i].id);
     }
     const maxId = Math.max(...idArray);
-    values.id = Math.max(maxId + 1);
-    console.log(values);
-    setTodoItem(values);
+    setTodoItem(Object.assign({}, values, {id: maxId + 1}));
   };
   render() {
     return (
