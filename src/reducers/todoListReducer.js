@@ -20,6 +20,7 @@ export const todoList = (state = [], action) => {
       return {
         ...state,
         listItems:
+        // eslint-disable-next-line
           state.listItems.filter(elem => elem.id !== parseInt(action.payload))
           // [...state.listItems.slice(0, action.payload), ...state.listItems.slice(action.payload + 1)]
       };
