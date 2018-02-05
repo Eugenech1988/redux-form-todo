@@ -30,7 +30,7 @@ class AddTodoItem extends Component {
     return (
       <div className='add-item'>
         <h2 className='add-item-heading'>
-          Add new ToDo Item
+          {`Add new ToDo Item`}
         </h2>
         <div className='add-item-wrap'>
           <AddTodoItemForm  onSubmit={this.submit}/>

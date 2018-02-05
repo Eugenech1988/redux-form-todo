@@ -34,8 +34,8 @@ class SideBar extends Component {
   }
   
   handleTitleChange(e) {
-    const {sortByTitleValue} = this.props;
     e.preventDefault();
+    const {sortByTitleValue} = this.props;
     const targetValue = e.target.value;
     sortByTitleValue(targetValue);
   }

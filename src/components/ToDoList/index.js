@@ -5,8 +5,9 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import ToDoItem from './item';
 import './style.scss';
-import {todoInputArray} from "helpers/helpers";
+import {todoInputArray, hasClass} from "helpers/helpers";
 import {getTodoList} from "actions/todoListAction";
+import cx from "classnames";
 
 const mapStateToProps = state => ({
   todoList: state.todoList
@@ -33,10 +34,19 @@ class ToDoList extends Component {
     currentPage: 1,
   };
   
+  componentDidMount() {
+    const paginationListActiveItem = document.getElementsByClassName('pagination-page-numbers-item')[0];
+    paginationListActiveItem.classList.add('active');
+  }
+  
   handlePaginationClick(e) {
+    const paginationListItems = document.getElementsByClassName('pagination-page-numbers-item');
+    for (let i = 0; i < paginationListItems.length; i ++)
+      paginationListItems[i].classList.remove('active');
     this.setState({
       currentPage: Number(e.target.id)
     });
+    e.target.classList.add('active');
   }
   
   handleNextClick(e) {
@@ -48,18 +58,27 @@ class ToDoList extends Component {
       this.setState({
         currentPage: nextPage
       });
+      const activeItem = document.getElementById(nextPage);
+      const paginationListItems = document.getElementsByClassName('pagination-page-numbers-item');
+      for (let i = 0; i < paginationListItems.length; i ++)
+        paginationListItems[i].classList.remove('active');
+      activeItem.classList.add('active');
     }
   }
   
   handlePrevClick(e) {
     e.preventDefault();
-    const paginationLength = document.getElementsByClassName('pagination-page-numbers-item').length;
     const {currentPage} = this.state;
     const prevPage = Number(currentPage - 1);
     if (currentPage > 1) {
       this.setState({
         currentPage: prevPage
       })
+      const activeItem = document.getElementById(prevPage);
+      const paginationListItems = document.getElementsByClassName('pagination-page-numbers-item');
+      for (let i = 0; i < paginationListItems.length; i ++)
+        paginationListItems[i].classList.remove('active');
+      activeItem.classList.add('active');
     }
   }
   
