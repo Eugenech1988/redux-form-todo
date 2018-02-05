@@ -7,7 +7,7 @@ import moment from 'moment';
 const thisMoment =  moment().format('DD.MM.YYYY h:mm A');
 
 const mapStateToProps = state => ({
-ч
+
 });
 
 @connect(mapStateToProps)
