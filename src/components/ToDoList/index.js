@@ -39,20 +39,28 @@ class ToDoList extends Component {
     });
   }
   
-  handleNextClick() {
+  handleNextClick(e) {
+    e.preventDefault();
+    const paginationLength = document.getElementsByClassName('pagination-page-numbers-item').length;
     const {currentPage} = this.state;
-    const nextPage = Number(currentPage + 1);
-    this.setState({
-      currentPage: nextPage
-    });
+    if (currentPage < paginationLength) {
+      const nextPage = Number(currentPage + 1);
+      this.setState({
+        currentPage: nextPage
+      });
+    }
   }
   
-  handlePrevClick() {
+  handlePrevClick(e) {
+    e.preventDefault();
+    const paginationLength = document.getElementsByClassName('pagination-page-numbers-item').length;
     const {currentPage} = this.state;
     const prevPage = Number(currentPage - 1);
-    this.setState({
-      currentPage: prevPage
-    })
+    if (currentPage > 1) {
+      this.setState({
+        currentPage: prevPage
+      })
+    }
   }
   
   componentWillMount() {
