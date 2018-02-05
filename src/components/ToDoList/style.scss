@@ -33,3 +33,13 @@
   right: 15px;
   cursor: pointer;
 }
+
+@media (max-width: 767px) {
+  .todo-item-wrap {
+    flex-basis: 100%;
+    margin-right: 0;
+    &:nth-child(4n) {
+      flex-basis: 100%;
+    }
+  }
+}

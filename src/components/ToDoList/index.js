@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import sort from 'fast-sort';
 
 import ToDoItem from './item';
 import Pagination from 'components/Pagination';

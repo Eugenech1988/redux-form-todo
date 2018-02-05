@@ -49,3 +49,25 @@
   padding: 0;
   visibility: hidden;
 }
+
+@media(max-width: 767px) {
+  .add-item-heading {
+    text-align: center;
+  }
+  .add-item-wrap {
+    width: 100%;
+    max-width: initial;
+  }
+  .add-item-input {
+    max-width: initial;
+    width: 100%;
+  }
+  .add-todo-item-btn {
+    display: block;
+    width: 100%;
+    max-width: initial;
+  }
+  .hidden-div {
+    margin-bottom: 10px;
+  }
+}

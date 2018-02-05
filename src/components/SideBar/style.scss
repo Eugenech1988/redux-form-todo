@@ -24,3 +24,16 @@
   display: block;
   margin-bottom: 10px;
 }
+
+@media (max-width: 767px) {
+  .sidebar-wrapper {
+    margin-bottom: 5px;
+    max-width: initial;
+  }
+  .sidebar-title-input,
+  .sidebar-date-picker {
+    max-width: initial;
+    width: 100% !important;
+    display: block;
+  }
+}

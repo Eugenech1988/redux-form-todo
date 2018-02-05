@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
-import moment from "moment";
+import {connect} from 'react-redux';
+import moment from 'moment';
 
-const thisMoment =  moment().format('0D.0M.YYYY h:mm A');
+const thisMoment =  moment().format('DD.MM.YYYY h:mm A');
+
+const mapStateToProps = state => ({
+});
+
+@connect(mapStateToProps)
 class AddTodoItemForm extends Component {
   render() {
     const {handleSubmit} = this.props;
@@ -18,8 +24,10 @@ class AddTodoItemForm extends Component {
           <Field  className='add-item-input' name='content' component='input' type='text'/>
         </div>
         <div className='hidden-div'>
-          <label htmlFor="submit-date"/>
+          <label htmlFor='submit-date'/>
           <Field name='date' component='input' type='text'/>
+          <label htmlFor='id'/>
+          <Field name='id' component='input' type='text'/>
         </div>
         <button className='add-todo-item-btn' type='submit'>Submit</button>
       </form>
@@ -32,12 +40,14 @@ AddTodoItemForm = reduxForm({
   initialValues: {
     'heading': '',
     'content': '',
-    'date': `${thisMoment}`
+    'date': `${thisMoment}`,
+    'id': 0
   }
 })(AddTodoItemForm);
 
 AddTodoItemForm.propTypes = {
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  id: PropTypes.number
 };
 
 export default AddTodoItemForm;

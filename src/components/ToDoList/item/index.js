@@ -17,13 +17,14 @@ class ToDoItem extends Component {
   handleClick(e) {
     const dataTarget = e.target.getAttribute('data-index');
     const {deleteTodoItem} = this.props;
+    console.log('dataTarget:',dataTarget);
     deleteTodoItem(dataTarget)
   }
   render() {
   	const {itemHeading, itemContent, itemDate, dataIndex} = this.props;
     return (
-      <div className='todo-item-wrap' data-index={dataIndex}>
-	      <span className='todo-item-close-btn' onClick={::this.handleClick}>x</span>
+      <div className='todo-item-wrap' >
+	      <span className='todo-item-close-btn' data-index={dataIndex} onClick={::this.handleClick}>x</span>
         {itemHeading && <h3 className='todo-item-heading'>
 		      {itemHeading}
 	      </h3>}

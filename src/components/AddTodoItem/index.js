@@ -8,7 +8,7 @@ import {setTodoItem} from "actions/todoListAction";
 
 
 const mapStateToProps = state => ({
-
+  listItems: state.todoList.listItems
 });
 
 const dispatchMapToProps = dispatch => ({
@@ -18,7 +18,14 @@ const dispatchMapToProps = dispatch => ({
 @connect(mapStateToProps, dispatchMapToProps)
 class AddTodoItem extends Component {
   submit = values => {
-    const {setTodoItem} = this.props;
+    const {setTodoItem, listItems} = this.props;
+    const idArray = [];
+    for (let i = 0; i < listItems.length; i++) {
+      idArray.push(listItems[i].id);
+    }
+    const maxId = Math.max(...idArray);
+    values.id = Math.max(maxId + 1);
+    console.log(values);
     setTodoItem(values);
   };
   render() {
@@ -36,7 +43,8 @@ class AddTodoItem extends Component {
 }
 
 AddTodoItem.propTypes = {
-  setTodoItem: PropTypes.func
+  setTodoItem: PropTypes.func,
+  id: PropTypes.number
 };
 
 export default AddTodoItem;

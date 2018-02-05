@@ -12,16 +12,19 @@ export const todoList = (state = [], action) => {
     case SET_TODO_ITEM:
       return {
         ...state,
-        listItems:[...state.listItems, action.addedItem]
+        listItems:[action.addedItem, ...state.listItems]
       };
     case DELETE_TODO_ITEM:
+      console.log('action:',action, 'list:', state.listItems);
       return {
         ...state,
-        listItems: [...state.listItems.slice(0, action.payload),
-        ...state.listItems.slice(action.payload + 1)]
+        listItems:
+          state.listItems.filter(elem => elem.id !== parseInt(action.payload))
+          // [...state.listItems.slice(0, action.payload), ...state.listItems.slice(action.payload + 1)]
+        
       };
-    // case SET_TODO_ID:
-    //   return {...state, listItems.id: action.id};
+    case SET_TODO_ID:
+      return {...state, listItems: action.id};
     default:
       return {...state};
   }
