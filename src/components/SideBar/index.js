@@ -3,17 +3,18 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
+import sort from 'fast-sort';
 
-import {sortByTitleValue} from 'actions/todoListAction';
+import {sortByTitleValue, sortByDateValue} from 'actions/todoListAction';
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.scss';
 
 const mapStateToProps = state => ({
-  listItems: state.todoList.listItems
 });
 
 const dispatchMapToProps = dispatch => ({
-  sortByTitleValue: (data) => dispatch(sortByTitleValue())
+  sortByTitleValue: (data) => dispatch(sortByTitleValue(data)),
+  sortByDateValue: (data) => dispatch(sortByDateValue(data))
 });
 
 @connect(mapStateToProps, dispatchMapToProps)
@@ -26,15 +27,19 @@ class SideBar extends Component {
   }
   
   handleChange(date) {
+    const {sortByDateValue} = this.props;
     this.setState({
       startDate: date
     });
+    sortByDateValue(date.format('DD.MM.YYYY h:mm A'));
+    
   }
   
   handleTitleChange(e) {
     const {sortByTitleValue} = this.props;
     e.preventDefault();
-    sortByTitleValue(e.target);
+    const targetValue = e.target.value;
+    sortByTitleValue(targetValue);
   }
   render() {
     const {startDate} = this.state;
@@ -58,7 +63,9 @@ class SideBar extends Component {
               <DatePicker className='sidebar-date-picker'
                           carret
                           selected={startDate}
-                          onChange={::this.handleChange}/>
+                          onChange={::this.handleChange}
+                          dateFormat='DD.MM.YYYY h:mm A'
+              />
             </div>
           </div>
         </div>
@@ -68,7 +75,8 @@ class SideBar extends Component {
 }
 
 SideBar.propTypes = {
-  sortByTitleValue: PropTypes.func
+  sortByTitleValue: PropTypes.func,
+  sortByDateValue: PropTypes.func
 };
 
 export default SideBar;

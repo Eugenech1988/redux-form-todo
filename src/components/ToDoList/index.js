@@ -11,7 +11,7 @@ import {todoInputArray} from "helpers/helpers";
 import {getTodoList} from "actions/todoListAction";
 
 const mapStateToProps = state => ({
-  todoList: state.todoList.listItems
+  todoList: state.todoList
 });
 
 const dispatchMapToProps = dispatch => ({
@@ -37,12 +37,23 @@ class ToDoList extends Component {
   
   render() {
     const {todoList} = this.props;
+    let List = todoList.listItems;
+    const TitleValue = todoList.titleValue;
+    const DateValue = todoList.dateValue;
+    if (TitleValue && DateValue) {
+      console.log(TitleValue, DateValue);
+      List = List.filter(elem => (elem.heading.toLowerCase() === TitleValue.toLowerCase() && elem.date === DateValue))
+    } else if (TitleValue) {
+      List = List.filter(elem => (elem.heading.toLowerCase() === TitleValue.toLowerCase()));
+    } else if (DateValue) {
+      List = List.filter(elem => (elem.date === DateValue));
+    }
     return (
       <div className='todo-list-wrap'>
-        {todoList &&
+        {List &&
         <TransitionGroup className='todo-list'>
           {
-            todoList.map((array, index) => {
+            List.map((array, index) => {
               return (
                 <Fade key={index}>
                     <ToDoItem
