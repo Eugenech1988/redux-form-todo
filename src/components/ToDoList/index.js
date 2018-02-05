@@ -33,11 +33,6 @@ class ToDoList extends Component {
     currentPage: 1,
   };
   
-  componentDidMount() {
-    // const paginationListActiveItem = document.getElementsByClassName('pagination-page-numbers-item')[0];
-    // paginationListActiveItem.classList.add('active');
-  }
-  
   handlePaginationClick(e) {
     const paginationListItems = document.getElementsByClassName('pagination-page-numbers-item');
     for (let i = 0; i < paginationListItems.length; i ++)
@@ -116,7 +111,7 @@ class ToDoList extends Component {
           key={number}
           id={number}
           onClick={::this.handlePaginationClick}
-          className={`pagination-page-numbers-item`}
+          className={`pagination-page-numbers-item ${number === 1 && 'active'}`}
         >
           {number}
         </li>
