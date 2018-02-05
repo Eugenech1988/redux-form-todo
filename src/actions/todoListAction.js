@@ -4,7 +4,7 @@ import {
 	DELETE_TODO_ITEM,
 	SORT_TODO_LIST_BY_TITLE,
   SORT_TODO_LIST_BY_DATE
-} from "constants/todoListConst";
+} from 'constants/todoListConst';
 
 export const getTodoList = listItems => ({
 	type: GET_TODO_LIST,

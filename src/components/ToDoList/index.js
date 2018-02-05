@@ -5,8 +5,8 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import ToDoItem from './item';
 import './style.scss';
-import {todoInputArray} from "helpers/helpers";
-import {getTodoList} from "actions/todoListAction";
+import {todoInputArray} from 'helpers/helpers';
+import {getTodoList} from 'actions/todoListAction';
 
 const mapStateToProps = state => ({
   todoList: state.todoList
@@ -20,7 +20,7 @@ const Fade = ({children, ...props}) => (
   <CSSTransition
     {...props}
     timeout={1000}
-    classNames="fade"
+    classNames='fade'
   >
     {children}
   </CSSTransition>
@@ -125,11 +125,11 @@ class ToDoList extends Component {
         </TransitionGroup>
         }
         {pageNumbers.length > 1 &&
-        <div className="pagination-wrapp" id='page-numbers'>
+        <div className='pagination-wrapp' id='page-numbers'>
           <span className='pagination-left' onClick={::this.handlePrevClick}>
             {'<'}
           </span>
-          <ul className="pagination-page-numbers-list">
+          <ul className='pagination-page-numbers-list'>
             {renderPageNumbers}
           </ul>
           <span className='pagination-right' onClick={::this.handleNextClick}>

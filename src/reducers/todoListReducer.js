@@ -4,7 +4,7 @@ import {
   DELETE_TODO_ITEM,
   SORT_TODO_LIST_BY_DATE,
   SORT_TODO_LIST_BY_TITLE
-} from "constants/todoListConst";
+} from 'constants/todoListConst';
 
 export const todoList = (state = [], action) => {
   switch (action.type) {
@@ -16,7 +16,7 @@ export const todoList = (state = [], action) => {
         listItems:[action.addedItem, ...state.listItems]
       };
     case DELETE_TODO_ITEM:
-      console.log('action:',action, 'list:', state.listItems);
+      // console.log('action:',action, 'list:', state.listItems);
       return {
         ...state,
         listItems:

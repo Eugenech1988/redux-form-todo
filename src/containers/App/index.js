@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Routes from 'routes';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div className='wrapper'>
-        <Routes/>
-      </div>
-    );
-  }
-}
+const App = props => {
+  return (
+    <div className='wrapper'>
+      <Routes/>
+    </div>
+  );
+};
 
+export default App;

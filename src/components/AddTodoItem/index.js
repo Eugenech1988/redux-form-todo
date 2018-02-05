@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import './style.scss';
-import AddTodoItemForm from "../AddTodoItemForm";
-import {setTodoItem} from "actions/todoListAction";
+import AddTodoItemForm from '../AddTodoItemForm';
+import {setTodoItem} from 'actions/todoListAction';
 
 
 const mapStateToProps = state => ({

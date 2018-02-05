@@ -31,7 +31,7 @@ class ToDoItem extends Component {
         {itemContent && <p className='todo-item-content'>
 		      {itemContent}
 	      </p>}
-        {itemDate && <p className="todo-item-date">
+        {itemDate && <p className='todo-item-date'>
           {itemDate}
         </p>}
       </div>
