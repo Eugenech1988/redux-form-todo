@@ -42,10 +42,17 @@ class ToDoList extends Component {
   handleNextClick() {
     const {currentPage} = this.state;
     const nextPage = Number(currentPage + 1);
-    console.log(nextPage);
-    // this.setState({
-    //   currentPage: nextPage
-    // });
+    this.setState({
+      currentPage: nextPage
+    });
+  }
+  
+  handlePrevClick() {
+    const {currentPage} = this.state;
+    const prevPage = Number(currentPage - 1);
+    this.setState({
+      currentPage: prevPage
+    })
   }
   
   componentWillMount() {
@@ -54,7 +61,7 @@ class ToDoList extends Component {
   }
   
   render() {
-    const { currentPage, todosPerPage } = this.state;
+    const {currentPage, todosPerPage} = this.state;
     const {todoList} = this.props;
     let List = todoList.listItems;
     const TitleValue = todoList.titleValue;
@@ -83,7 +90,7 @@ class ToDoList extends Component {
           key={number}
           id={number}
           onClick={::this.handlePaginationClick}
-          className='pagination-page-numbers-item'
+          className={`pagination-page-numbers-item`}
         >
           {number}
         </li>
@@ -112,13 +119,13 @@ class ToDoList extends Component {
         }
         {pageNumbers.length > 1 &&
         <div className="pagination-wrapp" id='page-numbers'>
-          <span className='pagination-left' onClick={this.handlePrevClick}>
+          <span className='pagination-left' onClick={::this.handlePrevClick}>
             {'<'}
           </span>
           <ul className="pagination-page-numbers-list">
             {renderPageNumbers}
           </ul>
-          <span className='pagination-right' onClick={this.handleNextClick}>
+          <span className='pagination-right' onClick={::this.handleNextClick}>
             {'>'}
           </span>
         </div>
