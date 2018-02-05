@@ -17,7 +17,6 @@ class ToDoItem extends Component {
   handleClick(e) {
     const dataTarget = e.target.getAttribute('data-index');
     const {deleteTodoItem} = this.props;
-    console.log('dataTarget:',dataTarget);
     deleteTodoItem(dataTarget)
   }
   render() {
