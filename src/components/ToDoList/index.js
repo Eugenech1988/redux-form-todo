@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import sort from 'fast-sort';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import ToDoItem from './item';
-import Pagination from 'components/Pagination';
 import './style.scss';
 import {todoInputArray} from "helpers/helpers";
 import {getTodoList} from "actions/todoListAction";
@@ -18,7 +16,7 @@ const dispatchMapToProps = dispatch => ({
   getTodoList: (data) => dispatch(getTodoList(data))
 });
 
-const Fade = ({ children, ...props }) => (
+const Fade = ({children, ...props}) => (
   <CSSTransition
     {...props}
     timeout={1000}
@@ -30,12 +28,33 @@ const Fade = ({ children, ...props }) => (
 
 @connect(mapStateToProps, dispatchMapToProps)
 class ToDoList extends Component {
+  state = {
+    todosPerPage: 16,
+    currentPage: 1,
+  };
+  
+  handlePaginationClick(e) {
+    this.setState({
+      currentPage: Number(e.target.id)
+    });
+  }
+  
+  handleNextClick() {
+    const {currentPage} = this.state;
+    const nextPage = Number(currentPage + 1);
+    console.log(nextPage);
+    // this.setState({
+    //   currentPage: nextPage
+    // });
+  }
+  
   componentWillMount() {
     const {getTodoList} = this.props;
     getTodoList(todoInputArray);
   }
   
   render() {
+    const { currentPage, todosPerPage } = this.state;
     const {todoList} = this.props;
     let List = todoList.listItems;
     const TitleValue = todoList.titleValue;
@@ -48,29 +67,61 @@ class ToDoList extends Component {
     } else if (DateValue) {
       List = List.filter(elem => (elem.date === DateValue));
     }
+    const indexOfLastTodo = currentPage * todosPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const pageNumbers = [];
+    let currentTodos;
+    if (List) {
+      currentTodos = List.slice(indexOfFirstTodo, indexOfLastTodo);
+      for (let i = 1; i <= Math.ceil(List.length / todosPerPage); i++) {
+        pageNumbers.push(i);
+      }
+    }
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={::this.handlePaginationClick}
+          className='pagination-page-numbers-item'
+        >
+          {number}
+        </li>
+      );
+    });
     return (
       <div className='todo-list-wrap'>
-        {List &&
+        {currentTodos &&
         <TransitionGroup className='todo-list'>
           {
-            List.map((array, index) => {
+            currentTodos.map((array, index) => {
               return (
                 <Fade key={index}>
-                    <ToDoItem
-                      className='todo-item-wrap'
-                      itemHeading={array.heading}
-                      itemContent={array.content}
-                      itemDate={array.date}
-                      dataIndex={array.id}
-                    />
+                  <ToDoItem
+                    className='todo-item-wrap'
+                    itemHeading={array.heading}
+                    itemContent={array.content}
+                    itemDate={array.date}
+                    dataIndex={array.id}
+                  />
                 </Fade>
               );
             })
           }
         </TransitionGroup>
         }
-        {todoList && todoList.length > 16 &&
-        <Pagination/>
+        {pageNumbers.length > 1 &&
+        <div className="pagination-wrapp" id='page-numbers'>
+          <span className='pagination-left' onClick={this.handlePrevClick}>
+            {'<'}
+          </span>
+          <ul className="pagination-page-numbers-list">
+            {renderPageNumbers}
+          </ul>
+          <span className='pagination-right' onClick={this.handleNextClick}>
+            {'>'}
+          </span>
+        </div>
         }
       </div>
     );

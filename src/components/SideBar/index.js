@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
-import sort from 'fast-sort';
 
 import {sortByTitleValue, sortByDateValue} from 'actions/todoListAction';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -32,7 +31,6 @@ class SideBar extends Component {
       startDate: date
     });
     sortByDateValue(date.format('DD.MM.YYYY h:mm A'));
-    
   }
   
   handleTitleChange(e) {
