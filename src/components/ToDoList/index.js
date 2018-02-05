@@ -74,12 +74,11 @@ class ToDoList extends Component {
     const TitleValue = todoList.titleValue;
     const DateValue = todoList.dateValue;
     if (TitleValue && DateValue) {
-      console.log(TitleValue, DateValue);
-      List = List.filter(elem => (elem.heading.toLowerCase() === TitleValue.toLowerCase() && elem.date === DateValue))
+      List = List.filter(elem => (elem.heading.toLowerCase() === TitleValue.toLowerCase() && elem.date.substr(0, 11) === DateValue.substr(0, 11)))
     } else if (TitleValue) {
       List = List.filter(elem => (elem.heading.toLowerCase() === TitleValue.toLowerCase()));
     } else if (DateValue) {
-      List = List.filter(elem => (elem.date === DateValue));
+      List = List.filter(elem => (elem.date.substr(0, 11) === DateValue.substr(0, 11)));
     }
     const indexOfLastTodo = currentPage * todosPerPage;
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
